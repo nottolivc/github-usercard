@@ -26,8 +26,8 @@ axios.get("https://api.github.com/users/nottolivc")
 .catch(err => {
   console.log(err);
 })
-
-const followersArray = [];
+//using my own followers and who i'm following
+const followersArray = [ ];
 
 axios.get('https://api.github.com/users/nottolivc/followers')
 .then(response =>{
@@ -61,10 +61,10 @@ console.log(followersArray);
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
 */
-followersArray.forEach(item =>{
-  let followerCards = superComp(item);
-  cCard.appendChild(followerCards);
-})
+// followersArray.forEach(item =>{
+//   let followerCards = superComp(item);
+//   cCard.appendChild(followerCards);
+// })
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 <div class="card">
@@ -118,6 +118,11 @@ function superComp(obj){
   bio.textContent = `${obj.bio}`;
   return cCard;
 }
+
+followersArray.forEach(item =>{
+  let followerCards = superComp(item);
+  cCard.appendChild(followerCards);
+})
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
@@ -125,3 +130,26 @@ function superComp(obj){
   luishrd
   bigknell
 */
+// joe's code for reference after...
+// const cardsSection = document.querySelector('.cards');
+// axios.get('https://api.github.com/users/joe-alfaro')
+//   .then(userData => {
+//     let followersArray = [];
+//     axios.get('https://api.github.com/users/joe-alfaro/followers')
+//       .then(followers => {
+//         followersArray = followers.data.map(follower => follower.login)
+
+//         followersArray.forEach(followerLogin => {
+//           axios.get(`https://api.github.com/users/${followerLogin}`)
+//             .then(followerData => {
+//               cardsSection.appendChild(createCard(followerData.data))
+//             })
+//             .catch(error => console.error(error))
+//         })
+//       })
+//       .catch(error => console.error(error))
+//     cardsSection.appendChild(createCard(userData.data));
+//   })
+//   .catch(error => {
+//     console.error(error)
+//   })

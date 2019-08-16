@@ -29,7 +29,7 @@ axios.get("https://api.github.com/users/nottolivc")
 
 const followersArray = [];
 
-git axios.get('https://api.github.com/users/nottolivc/followers')
+axios.get('https://api.github.com/users/nottolivc/followers')
 .then(response =>{
   console.log(response);
   response.data.forEach( element =>{
